@@ -16,7 +16,6 @@ def firstMethod(request):
     # 查询数据库中 name 匹配的第一条记录
     res = Parameters.objects.filter(name=name).first()
     res_data = res.data
-    print(res_data)
     S = res_data["S0"]["value"]
     K = res_data["K"]["value"]
     T = res_data["T"]["value"]
@@ -101,7 +100,7 @@ def firstMethod(request):
     result = []
 
     def simulation(n):
-        n=int(n)
+        n = int(n)
         for simulation_time in range(n):
             result.append({})
             mean = μ - Y  # 预期回报减去分红收益率
@@ -168,36 +167,28 @@ def firstMethod(request):
 
     # 如果找到数据，返回 jdata，否则返回错误信息
     if res and isinstance(res.data, dict):
-        print(result)
         return JsonResponse({"result": result, "Parameters": res_data, "id": res.id})
     else:
         return JsonResponse({"error": "Data not found or invalid format"}, status=404)
 
 
-def update_parameter(request, pk):
+def update_parameter(request):
     """
     使用 PUT 方法更新指定 Parameters 对象的 data 字段中的 JSON 值
     """
     if request.method == "PUT":
         try:
             # 获取指定的 Parameters 对象
-            parameter = get_object_or_404(Parameters, pk=pk)
+            parameter = get_object_or_404(Parameters)
 
             # 解析请求体中的 JSON 数据
             body = json.loads(request.body)
 
             # 验证请求数据中是否包含 `key` 和 `value`
-            key = body.get("key")
-            value = body.get("value")
-            if key is None or value is None:
-                return JsonResponse(
-                    {"error": "Missing 'key' or 'value' in request body"}, status=400
-                )
+            data = body.get("data")
 
-            # 更新 data 字段的 JSON 数据
-            data = parameter.data or {}
-            data[key]["value"] = float(value)
-            parameter.data = data
+            for item in data:
+                parameter.data[item["name"]]["value"] = item["value"]
             parameter.save()
 
             return JsonResponse(
