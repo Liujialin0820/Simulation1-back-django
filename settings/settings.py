@@ -127,7 +127,4 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # 允许的域名
-    "https://example.com",
-]
+CORS_ALLOW_ALL_ORIGINS = True
