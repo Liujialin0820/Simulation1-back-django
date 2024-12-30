@@ -1,0 +1,586 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "BaseCommand",
+        "importPath": "django.core.management.base",
+        "description": "django.core.management.base",
+        "isExtraImport": true,
+        "detail": "django.core.management.base",
+        "documentation": {}
+    },
+    {
+        "label": "Parameters",
+        "importPath": "simulation01.models",
+        "description": "simulation01.models",
+        "isExtraImport": true,
+        "detail": "simulation01.models",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "dataframe_to_json",
+        "importPath": "utils.dataframe_to_json",
+        "description": "utils.dataframe_to_json",
+        "isExtraImport": true,
+        "detail": "utils.dataframe_to_json",
+        "documentation": {}
+    },
+    {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "norm",
+        "importPath": "scipy.stats",
+        "description": "scipy.stats",
+        "isExtraImport": true,
+        "detail": "scipy.stats",
+        "documentation": {}
+    },
+    {
+        "label": "numpy_financial",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy_financial",
+        "description": "numpy_financial",
+        "detail": "numpy_financial",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "dataframe_to_json",
+        "importPath": "dataframe_to_json",
+        "description": "dataframe_to_json",
+        "isExtraImport": true,
+        "detail": "dataframe_to_json",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "settings.asgi",
+        "description": "settings.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "settings.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = \"django-insecure-9n!4!54rr)@#n7aq2qcb!(*figr++4&l=^wkwxcmbco48+*o99\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "SECRET_KEY = \"django-insecure-9n!4!54rr)@#n7aq2qcb!(*figr++4&l=^wkwxcmbco48+*o99\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"rest_framework\",",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"rest_framework\",\n    \"corsheaders\",\n    \"simulation01\",",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    \"corsheaders.middleware.CorsMiddleware\",\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    # \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n]",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "ROOT_URLCONF = \"settings.urls\"\nTEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",\n                \"django.contrib.auth.context_processors.auth\",",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "WSGI_APPLICATION",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "WSGI_APPLICATION = \"settings.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/5.1/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.sqlite3\",\n        \"NAME\": BASE_DIR / \"db.sqlite3\",\n    }\n}\n# Password validation",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.sqlite3\",\n        \"NAME\": BASE_DIR / \"db.sqlite3\",\n    }\n}\n# Password validation\n# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        \"NAME\": \"django.contrib.auth.password_validation.UserAttributeSimilarityValidator\",\n    },\n    {\n        \"NAME\": \"django.contrib.auth.password_validation.MinimumLengthValidator\",\n    },\n    {\n        \"NAME\": \"django.contrib.auth.password_validation.CommonPasswordValidator\",\n    },",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\nLOGGING = {",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\nLOGGING = {\n    \"version\": 1,",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "STATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\nLOGGING = {\n    \"version\": 1,\n    'disable_existing_loggers': True,\n    'formatters': {\n        'verbose': {",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AUTO_FIELD",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\nLOGGING = {\n    \"version\": 1,\n    'disable_existing_loggers': True,\n    'formatters': {\n        'verbose': {\n            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'\n        },\n        'simple': {",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORS_ALLOW_ALL_ORIGINS",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "CORS_ALLOW_ALL_ORIGINS = True\nLOGGING = {\n    \"version\": 1,\n    'disable_existing_loggers': True,\n    'formatters': {\n        'verbose': {\n            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'\n        },\n        'simple': {\n            'format': '%(levelname)s %(message)s'",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGING",
+        "kind": 5,
+        "importPath": "settings.settings",
+        "description": "settings.settings",
+        "peekOfCode": "LOGGING = {\n    \"version\": 1,\n    'disable_existing_loggers': True,\n    'formatters': {\n        'verbose': {\n            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'\n        },\n        'simple': {\n            'format': '%(levelname)s %(message)s'\n        },",
+        "detail": "settings.settings",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "settings.urls",
+        "description": "settings.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"api/simulation01/\", include(\"simulation01.urls\")),\n]",
+        "detail": "settings.urls",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "settings.wsgi",
+        "description": "settings.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "settings.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "Command",
+        "kind": 6,
+        "importPath": "simulation01.management.commands.initmymodel",
+        "description": "simulation01.management.commands.initmymodel",
+        "peekOfCode": "class Command(BaseCommand):\n    def handle(self, *args, **options):\n        Parameters.objects.create(\n            data={\n                \"S0\": {\"value\": 100, \"desc\": \"Stock price at time 0\"},\n                \"ST\": {\"value\": 100, \"desc\": \"Stock price at time T\"},\n                \"K\": {\"value\": 100, \"desc\": \"Strike/Exercise Price\"},\n                \"T\": {\"value\": 3, \"desc\": \"Expiration Time\"},\n                \"r\": {\"value\": 0.045, \"desc\": \"Risk-free interest rate (annual)\"},\n                \"sigma\": {\"value\": 0.15, \"desc\": \"Volatility (annual)\"},",
+        "detail": "simulation01.management.commands.initmymodel",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "simulation01.migrations.0001_initial",
+        "description": "simulation01.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Parameters',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('data', models.JSONField()),",
+        "detail": "simulation01.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Simulation01Config",
+        "kind": 6,
+        "importPath": "simulation01.apps",
+        "description": "simulation01.apps",
+        "peekOfCode": "class Simulation01Config(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'simulation01'",
+        "detail": "simulation01.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Parameters",
+        "kind": 6,
+        "importPath": "simulation01.models",
+        "description": "simulation01.models",
+        "peekOfCode": "class Parameters(models.Model):\n    data = models.JSONField()  # 用于存储 JSON 数据\n    name = models.CharField(max_length=256)\n    user = models.CharField(max_length=256, blank=True)\nclass SimulationResult(models.Model):\n    data = models.JSONField()",
+        "detail": "simulation01.models",
+        "documentation": {}
+    },
+    {
+        "label": "SimulationResult",
+        "kind": 6,
+        "importPath": "simulation01.models",
+        "description": "simulation01.models",
+        "peekOfCode": "class SimulationResult(models.Model):\n    data = models.JSONField()",
+        "detail": "simulation01.models",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "simulation01.urls",
+        "description": "simulation01.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.firstMethod, name=\"first\"),\n    path(\"update/\", views.update_parameter, name=\"update_parameter\"),\n]",
+        "detail": "simulation01.urls",
+        "documentation": {}
+    },
+    {
+        "label": "firstMethod",
+        "kind": 2,
+        "importPath": "simulation01.views",
+        "description": "simulation01.views",
+        "peekOfCode": "def firstMethod(request):\n    # 从请求中获取 'name' 参数\n    name = request.GET.get(\"name\")\n    # 查询数据库中 name 匹配的第一条记录\n    res = Parameters.objects.filter(name=name).first()\n    res_data = res.data\n    S = res_data[\"S0\"][\"value\"]\n    K = res_data[\"K\"][\"value\"]\n    T = res_data[\"T\"][\"value\"]\n    r = res_data[\"r\"][\"value\"]",
+        "detail": "simulation01.views",
+        "documentation": {}
+    },
+    {
+        "label": "update_parameter",
+        "kind": 2,
+        "importPath": "simulation01.views",
+        "description": "simulation01.views",
+        "peekOfCode": "def update_parameter(request):\n    \"\"\"\n    使用 PUT 方法更新指定 Parameters 对象的 data 字段中的 JSON 值\n    \"\"\"\n    if request.method == \"PUT\":\n        try:\n            # 获取指定的 Parameters 对象\n            parameter = get_object_or_404(Parameters)\n            # 解析请求体中的 JSON 数据\n            body = json.loads(request.body)",
+        "detail": "simulation01.views",
+        "documentation": {}
+    },
+    {
+        "label": "dataframe_to_json",
+        "kind": 2,
+        "importPath": "test.dataframe_to_json",
+        "description": "test.dataframe_to_json",
+        "peekOfCode": "def dataframe_to_json(sheet):\n    \"\"\"\n    将 DataFrame 转换为一个 JSON 格式，包含 'categories' 和 'values'。\n    参数：\n    df : pandas.DataFrame\n        输入的 DataFrame。\n    category_column : str\n        用作 'categories' 的列名。\n    value_column : str\n        用作 'values' 的列名。",
+        "detail": "test.dataframe_to_json",
+        "documentation": {}
+    },
+    {
+        "label": "conn",
+        "kind": 5,
+        "importPath": "test.test_call_option",
+        "description": "test.test_call_option",
+        "peekOfCode": "conn = sqlite3.connect(\"../db.sqlite3\")\ncursor = conn.cursor()\ncursor.execute(\"select data from simulation01_parameters where name ='Call Option' \")\nrow = cursor.fetchall()[0]\n# 关闭游标和连接\ncursor.close()\nconn.close()\n# %%\nrow = json.loads(row[0])\n#%%",
+        "detail": "test.test_call_option",
+        "documentation": {}
+    },
+    {
+        "label": "cursor",
+        "kind": 5,
+        "importPath": "test.test_call_option",
+        "description": "test.test_call_option",
+        "peekOfCode": "cursor = conn.cursor()\ncursor.execute(\"select data from simulation01_parameters where name ='Call Option' \")\nrow = cursor.fetchall()[0]\n# 关闭游标和连接\ncursor.close()\nconn.close()\n# %%\nrow = json.loads(row[0])\n#%%\nsheet = pd.DataFrame()",
+        "detail": "test.test_call_option",
+        "documentation": {}
+    },
+    {
+        "label": "row",
+        "kind": 5,
+        "importPath": "test.test_call_option",
+        "description": "test.test_call_option",
+        "peekOfCode": "row = cursor.fetchall()[0]\n# 关闭游标和连接\ncursor.close()\nconn.close()\n# %%\nrow = json.loads(row[0])\n#%%\nsheet = pd.DataFrame()\ndata = np.arange(0, 101, 5)\nsheet[\"x\"] = data",
+        "detail": "test.test_call_option",
+        "documentation": {}
+    },
+    {
+        "label": "row",
+        "kind": 5,
+        "importPath": "test.test_call_option",
+        "description": "test.test_call_option",
+        "peekOfCode": "row = json.loads(row[0])\n#%%\nsheet = pd.DataFrame()\ndata = np.arange(0, 101, 5)\nsheet[\"x\"] = data\n#%%\nrow['K']['value']\n#%%\n#%%\n#%%",
+        "detail": "test.test_call_option",
+        "documentation": {}
+    },
+    {
+        "label": "sheet",
+        "kind": 5,
+        "importPath": "test.test_call_option",
+        "description": "test.test_call_option",
+        "peekOfCode": "sheet = pd.DataFrame()\ndata = np.arange(0, 101, 5)\nsheet[\"x\"] = data\n#%%\nrow['K']['value']\n#%%\n#%%\n#%%\ndataframe_to_json(sheet)",
+        "detail": "test.test_call_option",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "test.test_call_option",
+        "description": "test.test_call_option",
+        "peekOfCode": "data = np.arange(0, 101, 5)\nsheet[\"x\"] = data\n#%%\nrow['K']['value']\n#%%\n#%%\n#%%\ndataframe_to_json(sheet)",
+        "detail": "test.test_call_option",
+        "documentation": {}
+    },
+    {
+        "label": "sheet[\"x\"]",
+        "kind": 5,
+        "importPath": "test.test_call_option",
+        "description": "test.test_call_option",
+        "peekOfCode": "sheet[\"x\"] = data\n#%%\nrow['K']['value']\n#%%\n#%%\n#%%\ndataframe_to_json(sheet)",
+        "detail": "test.test_call_option",
+        "documentation": {}
+    },
+    {
+        "label": "dataframe_to_json",
+        "kind": 2,
+        "importPath": "utils.dataframe_to_json",
+        "description": "utils.dataframe_to_json",
+        "peekOfCode": "def dataframe_to_json(sheet):\n    \"\"\"\n    将 DataFrame 转换为一个 JSON 格式，包含 'categories' 和 'values'。\n    参数：\n    df : pandas.DataFrame\n        输入的 DataFrame。\n    category_column : str\n        用作 'categories' 的列名。\n    value_column : str\n        用作 'values' 的列名。",
+        "detail": "utils.dataframe_to_json",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "manage",
+        "description": "manage",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
+        "detail": "manage",
+        "documentation": {}
+    }
+]
