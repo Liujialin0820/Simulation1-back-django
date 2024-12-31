@@ -150,14 +150,14 @@ LOGGING = {
        'file': {
            'level': 'DEBUG',
            'class': 'logging.FileHandler',
-           'filename': '/data/log/oa.log',
+           'filename': './data/log/oa.log',
            'formatter': 'verbose'
        },
     },
     'loggers': {
         'django': {
             'handlers': ['console','file'],
-            'level': 'DEBUG',
+            'level': 'ERROR',
         },
     },
 }
