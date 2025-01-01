@@ -1,56 +1,40 @@
 from django.http import JsonResponse
+from simulation01.serializers import ParametersModelSerializer, SimDataSerializer
 from .models import Parameters, SimulationResult
 import numpy as np
-from utils.dataframe_to_json import dataframe_to_json
-from django.shortcuts import get_object_or_404
-import json
 import math
 from scipy.stats import norm
 import numpy_financial as npf
+import pandas as pd
+from rest_framework.generics import ListCreateAPIView
+import json
+
+
+class ParametersListCreateAPIView(ListCreateAPIView):
+    queryset = Parameters.objects.all()
+    serializer_class = ParametersModelSerializer
 
 
 def firstMethod(request):
-    # 从请求中获取 'name' 参数
-    name = request.GET.get("name")
-
     # 查询数据库中 name 匹配的第一条记录
-    res = Parameters.objects.filter(name=name).first()
-    res_data = res.data
-    S = res_data["S0"]["value"]
-    K = res_data["K"]["value"]
-    T = res_data["T"]["value"]
-    r = res_data["r"]["value"]
-    sigma = res_data["sigma"]["value"]  # Volatility (annual)
-    Y = res_data["Y"]["value"]  # Dividend yield (annual)
-    μ = res_data["μ"]["value"]  # Expected total return
-    income_tax_rate_I = res_data["income_tax_rate_I"][
-        "value"
-    ]  # Income tax rate (I product)
-    capital_gains_tax_rate_I = res_data["capital_gains_tax_rate_I"][
-        "value"
-    ]  # Capital gains tax rate (I product)
-    capital_gains_tax_rate_G = res_data["capital_gains_tax_rate_G"][
-        "value"
-    ]  # Capital gains tax rate (G product)
-    Franking = res_data["Franking"]["value"]  # Franking credit rate (assumed 90%)
-    simulation_step = res_data["simulation_step"]["value"]  # Number of simulation steps
+    res = Parameters.objects.last()
+    serializer = ParametersModelSerializer(instance=res)
+    res_data = serializer.data
+    S = res_data["S0"]
+    K = res_data["K"]
+    T = res_data["T"]
+    r = res_data["r"]
+    sigma = res_data["sigma"]
+    Y = res_data["Y"]
+    μ = res_data["μ"]
+    Franking = res_data["Franking"]
+    n = res_data["simulation_step"]
+    Family_Office_Income_tax = res_data["Family_Office_Income_tax"]
+    Family_Office_Cap_gains_tax = res_data["Family_Office_Cap_gains_tax"]
+    Super_Fund_Income_tax = res_data["Super_Fund_Income_tax"]
+    Super_Fund_Cap_gains_tax = res_data["Super_Fund_Cap_gains_tax"]
 
     def black_scholes_with_dividend(S, K, T, r, sigma, Y, option_type="call"):
-        """
-        Black-Scholes 公式 (包含分红收益率)
-
-        参数:
-        S: 当前股票价格
-        K: 期权执行价格
-        T: 到期时间 (以年为单位)
-        r: 无风险利率 (年化)
-        sigma: 波动率 (年化)
-        Y: 分红收益率 (年化)
-        option_type: "call" 或 "put" (期权类型)
-
-        返回:
-        期权价格
-        """
         # 计算 d1 和 d2
         d1 = (math.log(S / K) + (r - Y + 0.5 * sigma**2) * T) / (sigma * math.sqrt(T))
         d2 = d1 - sigma * math.sqrt(T)
@@ -72,133 +56,181 @@ def firstMethod(request):
 
     # 计算看涨期权和看跌期权价格
     call_price = black_scholes_with_dividend(S, K, T, r, sigma, Y, option_type="call")
-    # put_price = black_scholes_with_dividend(S, K, T, r, sigma, Y, option_type="put")
 
-    #  计算分红影响的现值
-    def dividend_impact(S, Y, T):
-        """
-        计算 S(1 - e^(-YT))，即分红影响的现值
+    tmp = S - S * math.exp(-Y * T)
+    tmp = call_price / tmp
+    I0 = S / (1 + tmp)
+    G0 = S - I0
 
-        参数:
-        S: 当前股票价格
-        Y: 分红收益率
-        T: 时间 (以年为单位)
+    sheet = pd.DataFrame(index=range(n))
+    sheet["I0"] = I0
+    sheet["G0"] = G0
 
-        返回:
-        分红影响的现值
-        """
-        return S * (1 - math.exp(-Y * T))
+    # r
+    mean = μ - Y  # 预期回报减去分红收益率
+    std_dev = sigma  # 波动率
+    r_values = np.random.normal(loc=mean, scale=std_dev, size=(n, 6))
 
-    def Calculate_I(call_price):
-        return S / (1 + call_price / dividend_impact(S, Y, T))
+    exp_r_values = np.exp(r_values * 0.5)
+    columns = [f"exp_r{i}" for i in range(1, 7)]
+    sheet[columns] = exp_r_values
 
-    # 根据分红影响的现值计算 I 价格和 G 价格
-    I_price = Calculate_I(call_price)  # 计算分红收益产品的价格 (I)
-    G_price = S - I_price  # 计算股票价值变化产品的价格 (G)
+    # S
+    scolumn = []
+    for i in range(1, 7):
+        columnName = f"S{i*0.5}"
+        scolumn.append(columnName)
+        rColumn = f"exp_r{i}"
+        if i == 1:
+            sheet[columnName] = sheet[rColumn] * S
+        else:
+            columnNamePre = f"S{(i-1)*0.5}"
+            sheet[columnName] = sheet[rColumn] * sheet[columnNamePre]
+    S_values = np.array(sheet[scolumn])
 
-    #  随机生成股票价格变化
-    result = []
+    # G3
+    sheet["tmp1"] = (G0 / S) * np.minimum(sheet["S3.0"] - K, 0)
+    sheet["tmp2"] = np.maximum(sheet["S3.0"] - K, 0)
+    sheet["Capital_gain_Family_Office"] = (sheet["tmp1"] + sheet["tmp2"]) * (
+        1 - Family_Office_Cap_gains_tax
+    )
+    sheet["G3"] = sheet["G0"] + sheet["Capital_gain_Family_Office"]
 
-    def simulation(n):
-        n = int(n)
-        for simulation_time in range(n):
-            result.append({})
-            mean = μ - Y  # 预期回报减去分红收益率
-            std_dev = sigma  # 波动率
+    sheet["Product_Family_Office_after_tax_income_G_irr_values"] = 2 * (
+        (sheet["G3"] / sheet["G0"]) ** (1 / 6) - 1
+    )
 
-            # 生成6个随机的股票收益率
-            r_values = norm.ppf(np.random.rand(6), loc=mean, scale=std_dev)
+    sheet["tmp3"] = np.minimum(sheet["S3.0"] - K, 0) * (I0 / S)
+    sheet["I3"] = sheet["tmp3"] * (1 - Super_Fund_Cap_gains_tax) + I0
 
-            # 半年价格变化
-            half_year_price_change = np.exp(r_values * 0.5)
+    Div_values = S_values * Y * 0.5
+    columns = [f"Div{i}" for i in range(1, 7)]
+    sheet[columns] = Div_values
 
-            # 计算未来股票价格，假设初始股票价格为100
-            stock_price = 100 * np.cumprod(half_year_price_change)
-            result[simulation_time]["stock price"] = np.round(stock_price, 3).tolist()
+    Gross_Div_values = Div_values / (1 - 0.3)
+    columns = [f"Gross_Div{i}" for i in range(1, 7)]
+    sheet[columns] = Gross_Div_values
 
-            #  G: 股票价值变化产品的计算
-            G1 = (G_price / S) * min(
-                stock_price[-1] - K, 0
-            )  # G1 部分：看跌期权的损失部分（基于股票价值变化）
-            G2 = max(
-                stock_price[-1] - K, 0
-            )  # G2 部分：看涨期权的收益部分（基于股票价值变化）
-            GCapitalGain = (G1 + G2) * (
-                1 - capital_gains_tax_rate_G
-            )  # 计算资本增益，扣除公司税（基于股票价值变化）
-            G3 = (
-                G_price + GCapitalGain
-            )  # G的最终价值（包括股票价值变化的收益和税后资本增益）
-            G_IRR = 2 * ((G3 / G_price) ** (1 / 6) - 1)  # 计算G部分的IRR（年化收益率）
-            result[simulation_time]["G-IRR"] = round(float(G_IRR), 3)
-            # I: 股票分红收益产品的计算
-            I1 = (I_price / S) * min(
-                stock_price[-1] - K, 0
-            )  # I1 部分：看跌期权的损失部分（基于分红收益）
-            I3 = (
-                I_price + (1 - capital_gains_tax_rate_I) * I1
-            )  # 计算税后分红收益（基于分红收益）
+    FC_vales = (Gross_Div_values - Div_values) * Franking
+    columns = [f"FC{i}" for i in range(1, 7)]
+    sheet[columns] = FC_vales
 
-            # 计算分红影响
-            Net_DIV = stock_price * Y / 2  # 计算每期的净分红（考虑分红收益率）
-            Gross_DIV = Net_DIV / (1 - 0.3)  # 计算毛分红（假设税费为30%）
-            FC = (
-                Net_DIV - Gross_DIV
-            ) * Franking  # 计算符合税收的分红部分（基于分红收益）
-            atax = (Net_DIV - FC) * (
-                1 - income_tax_rate_I
-            )  # 计算税后分红（基于分红收益）
+    Share_Fammily_Office_after_tax_income = (FC_vales + Div_values) * (
+        1 - Family_Office_Income_tax
+    )
+    Share_Fammily_Office_after_tax_income = np.insert(
+        Share_Fammily_Office_after_tax_income, 0, -S, axis=1
+    )
+    Share_Fammily_Office_after_tax_income[:, 6] += (sheet["S3.0"] - S) * (
+        1 - Family_Office_Cap_gains_tax
+    ) + S
+    sheet["Share_Fammily_Office_after_tax_income_irr_values"] = np.apply_along_axis(
+        npf.irr, axis=1, arr=Share_Fammily_Office_after_tax_income
+    )
 
-            # 构建现金流序列（包括初期投资和未来税后分红收益）
-            cash_flows = atax
-            cash_flows[-1] += I3  # 最后一期现金流加上分红收益的资本增值
-            cash_flows = np.insert(
-                cash_flows, 0, 0 - I_price
-            )  # 初始期的现金流（负的I价格）
+    Product_Super_Fund_after_tax_income = (FC_vales + Div_values) * (
+        1 - Super_Fund_Income_tax
+    )
+    Product_Super_Fund_after_tax_income = np.insert(
+        Product_Super_Fund_after_tax_income, 0, -I0, axis=1
+    )
+    Product_Super_Fund_after_tax_income[:, 6] += sheet["I3"]
 
-            # 计算IRR
-            I_irr = npf.irr(cash_flows) * 2  # 计算IRR并乘以2，得到年化IRR
-            result[simulation_time]["I-IRR"] = round(I_irr, 3)
+    sheet["Product_Super_Fund_after_tax_income_I_irr_values"] = np.apply_along_axis(
+        npf.irr, axis=1, arr=Product_Super_Fund_after_tax_income
+    )
 
-        return result
+    Share_Super_Fund_after_tax_income = (FC_vales + Div_values) * (
+        1 - Super_Fund_Income_tax
+    )
+    Share_Super_Fund_after_tax_income = np.insert(
+        Share_Super_Fund_after_tax_income, 0, -S, axis=1
+    )
+    Share_Super_Fund_after_tax_income[:, 6] += S + (sheet["S3.0"] - S) * (
+        1 - Super_Fund_Cap_gains_tax
+    )
+    sheet["Share_Super_Fund_after_tax_income_irr_values"] = np.apply_along_axis(
+        npf.irr, axis=1, arr=Share_Super_Fund_after_tax_income
+    )
 
-    result = simulation(simulation_step)
-    SimulationResult.objects.create(data=result)
+    sheet_result = sheet[
+        [
+            "Share_Super_Fund_after_tax_income_irr_values",
+            "Product_Super_Fund_after_tax_income_I_irr_values",
+            "Share_Fammily_Office_after_tax_income_irr_values",
+            "Product_Family_Office_after_tax_income_G_irr_values",
+        ]
+    ]
+    renamed_columns = {
+        "Share_Super_Fund_after_tax_income_irr_values": "SuperFund_Share_IRR",
+        "Product_Super_Fund_after_tax_income_I_irr_values": "SuperFund_Product_IRR",
+        "Share_Fammily_Office_after_tax_income_irr_values": "FamilyOffice_Share_IRR",
+        "Product_Family_Office_after_tax_income_G_irr_values": "FamilyOffice_Product_IRR",
+    }
+    sheet_result = sheet_result.rename(columns=renamed_columns)
 
-    # 如果找到数据，返回 jdata，否则返回错误信息
-    if res and isinstance(res.data, dict):
-        return JsonResponse({"result": result, "Parameters": res_data, "id": res.id})
-    else:
-        return JsonResponse({"error": "Data not found or invalid format"}, status=404)
+    # 计算均值和标准差
+    mean_std_result = sheet_result.agg(["mean", "std"])
+    mean_std_result.round(4)
+
+    SimulationResult.objects.create(
+        data=sheet_result.to_json(), static=mean_std_result.round(4).to_json()
+    )
+    return JsonResponse(
+        {
+            "result": "created new simulation data",
+        }
+    )
 
 
-def update_parameter(request):
-    """
-    使用 PUT 方法更新指定 Parameters 对象的 data 字段中的 JSON 值
-    """
-    if request.method == "PUT":
-        try:
-            # 获取指定的 Parameters 对象
-            parameter = get_object_or_404(Parameters)
+def get_IRR_data(request):
+    data = SimulationResult.objects.last()
+    if not data:
+        return JsonResponse({"error": "没有找到任何记录。"}, status=404)
 
-            # 解析请求体中的 JSON 数据
-            body = json.loads(request.body)
+    # 使用序列化器序列化数据
+    serializer = SimDataSerializer(instance=data)
+    serialized_data = serializer.data  # 正确获取序列化后的数据
+    sheet_data = serialized_data.get("data", {})
+    sheet_data = json.loads(sheet_data)
+    static_data = serialized_data.get("static", {})
 
-            # 验证请求数据中是否包含 `key` 和 `value`
-            data = body.get("data")
+    try:
+        sheet = pd.DataFrame(sheet_data)
+        df = pd.DataFrame()
+        # 定义区间范围和标签
+        step = 0.01
+        bins = np.arange(-0.2, 0.35 + step, step)  # 从-1到1，步长0.01
 
-            for item in data:
-                parameter.data[item["name"]]["value"] = item["value"]
-            parameter.save()
+        # 生成标签，例如 "-1.00--0.99", "-0.99--0.98", ..., "0.99-1.00"
+        labels = [f"{bins[i+1]*100:.0f}%" for i in range(len(bins) - 1)]
 
-            return JsonResponse(
-                {"message": "Parameter updated successfully", "data": parameter.data},
-                status=200,
+        # 分桶
+        charData = []
+        # 分别对每列进行分桶
+        for key in sheet.keys():
+            df[key] = pd.cut(sheet[key], bins=bins, labels=labels, right=False)
+            charData.append(
+                {
+                    "name": key,
+                    "data": list(
+                        df[key].value_counts().sort_index().to_dict().values()
+                    ),
+                }
             )
 
-        except json.JSONDecodeError:
-            return JsonResponse({"error": "Invalid JSON in request body"}, status=400)
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=500)
+        # 分别统计每列的频数
+    except Exception as e:
+        return JsonResponse({"error": f"创建 DataFrame 时出错: {str(e)}"}, status=500)
 
-    return JsonResponse({"error": "Invalid request method"}, status=405)
+    return JsonResponse(
+        {
+            "charData": charData,
+            "xAxisData": list(
+                df[sheet.keys()[0]].value_counts().sort_index().to_dict().keys()
+            ),
+            "static_data": static_data,
+        },
+        status=200,
+        safe=False,
+    )

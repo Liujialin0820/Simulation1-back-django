@@ -73,6 +73,23 @@
         "documentation": {}
     },
     {
+        "label": "django.core.validators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "detail": "django.core.validators",
+        "documentation": {}
+    },
+    {
+        "label": "MaxValueValidator",
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "isExtraImport": true,
+        "detail": "django.core.validators",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -113,6 +130,14 @@
         "documentation": {}
     },
     {
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
@@ -129,6 +154,46 @@
         "documentation": {}
     },
     {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "ParametersModelSerializer",
+        "importPath": "simulation01.serializers",
+        "description": "simulation01.serializers",
+        "isExtraImport": true,
+        "detail": "simulation01.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "SimDataSerializer",
+        "importPath": "simulation01.serializers",
+        "description": "simulation01.serializers",
+        "isExtraImport": true,
+        "detail": "simulation01.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ParametersModelSerializer",
+        "importPath": "simulation01.serializers",
+        "description": "simulation01.serializers",
+        "isExtraImport": true,
+        "detail": "simulation01.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "SimDataSerializer",
+        "importPath": "simulation01.serializers",
+        "description": "simulation01.serializers",
+        "isExtraImport": true,
+        "detail": "simulation01.serializers",
+        "documentation": {}
+    },
+    {
         "label": "numpy",
         "kind": 6,
         "isExtraImport": true,
@@ -138,37 +203,20 @@
         "documentation": {}
     },
     {
-        "label": "dataframe_to_json",
-        "importPath": "utils.dataframe_to_json",
-        "description": "utils.dataframe_to_json",
-        "isExtraImport": true,
-        "detail": "utils.dataframe_to_json",
-        "documentation": {}
-    },
-    {
-        "label": "get_object_or_404",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
         "label": "math",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "math",
         "description": "math",
         "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "norm",
+        "importPath": "scipy.stats",
+        "description": "scipy.stats",
+        "isExtraImport": true,
+        "detail": "scipy.stats",
         "documentation": {}
     },
     {
@@ -195,6 +243,31 @@
         "importPath": "pandas",
         "description": "pandas",
         "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "ListCreateAPIView",
+        "importPath": "rest_framework.generics",
+        "description": "rest_framework.generics",
+        "isExtraImport": true,
+        "detail": "rest_framework.generics",
+        "documentation": {}
+    },
+    {
+        "label": "ListCreateAPIView",
+        "importPath": "rest_framework.generics",
+        "description": "rest_framework.generics",
+        "isExtraImport": true,
+        "detail": "rest_framework.generics",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
@@ -237,7 +310,7 @@
         "kind": 5,
         "importPath": "settings.settings",
         "description": "settings.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = \"django-insecure-9n!4!54rr)@#n7aq2qcb!(*figr++4&l=^wkwxcmbco48+*o99\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = \"django-insecure-9n!4!54rr)@#n7aq2qcb!(*figr++4&l=^wkwxcmbco48+*o99\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [",
         "detail": "settings.settings",
         "documentation": {}
     },
@@ -246,7 +319,7 @@
         "kind": 5,
         "importPath": "settings.settings",
         "description": "settings.settings",
-        "peekOfCode": "SECRET_KEY = \"django-insecure-9n!4!54rr)@#n7aq2qcb!(*figr++4&l=^wkwxcmbco48+*o99\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
+        "peekOfCode": "SECRET_KEY = \"django-insecure-9n!4!54rr)@#n7aq2qcb!(*figr++4&l=^wkwxcmbco48+*o99\"\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
         "detail": "settings.settings",
         "documentation": {}
     },
@@ -255,7 +328,7 @@
         "kind": 5,
         "importPath": "settings.settings",
         "description": "settings.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
         "detail": "settings.settings",
         "documentation": {}
     },
@@ -264,7 +337,7 @@
         "kind": 5,
         "importPath": "settings.settings",
         "description": "settings.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"rest_framework\",",
+        "peekOfCode": "ALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"rest_framework\",",
         "detail": "settings.settings",
         "documentation": {}
     },
@@ -354,7 +427,7 @@
         "kind": 5,
         "importPath": "settings.settings",
         "description": "settings.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\nLOGGING = {",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\n# LOGGING = {",
         "detail": "settings.settings",
         "documentation": {}
     },
@@ -363,7 +436,7 @@
         "kind": 5,
         "importPath": "settings.settings",
         "description": "settings.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\nLOGGING = {\n    \"version\": 1,",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\n# LOGGING = {\n#     \"version\": 1,",
         "detail": "settings.settings",
         "documentation": {}
     },
@@ -372,7 +445,7 @@
         "kind": 5,
         "importPath": "settings.settings",
         "description": "settings.settings",
-        "peekOfCode": "STATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\nLOGGING = {\n    \"version\": 1,\n    'disable_existing_loggers': True,\n    'formatters': {\n        'verbose': {",
+        "peekOfCode": "STATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\n# LOGGING = {\n#     \"version\": 1,\n#     \"disable_existing_loggers\": True,\n#     \"formatters\": {\n#         \"verbose\": {",
         "detail": "settings.settings",
         "documentation": {}
     },
@@ -381,7 +454,7 @@
         "kind": 5,
         "importPath": "settings.settings",
         "description": "settings.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\nLOGGING = {\n    \"version\": 1,\n    'disable_existing_loggers': True,\n    'formatters': {\n        'verbose': {\n            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'\n        },\n        'simple': {",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\nCORS_ALLOW_ALL_ORIGINS = True\n# LOGGING = {\n#     \"version\": 1,\n#     \"disable_existing_loggers\": True,\n#     \"formatters\": {\n#         \"verbose\": {\n#             \"format\": \"%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s\"\n#         },\n#         \"simple\": {\"format\": \"%(levelname)s %(message)s\"},",
         "detail": "settings.settings",
         "documentation": {}
     },
@@ -390,16 +463,7 @@
         "kind": 5,
         "importPath": "settings.settings",
         "description": "settings.settings",
-        "peekOfCode": "CORS_ALLOW_ALL_ORIGINS = True\nLOGGING = {\n    \"version\": 1,\n    'disable_existing_loggers': True,\n    'formatters': {\n        'verbose': {\n            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'\n        },\n        'simple': {\n            'format': '%(levelname)s %(message)s'",
-        "detail": "settings.settings",
-        "documentation": {}
-    },
-    {
-        "label": "LOGGING",
-        "kind": 5,
-        "importPath": "settings.settings",
-        "description": "settings.settings",
-        "peekOfCode": "LOGGING = {\n    \"version\": 1,\n    'disable_existing_loggers': True,\n    'formatters': {\n        'verbose': {\n            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'\n        },\n        'simple': {\n            'format': '%(levelname)s %(message)s'\n        },",
+        "peekOfCode": "CORS_ALLOW_ALL_ORIGINS = True\n# LOGGING = {\n#     \"version\": 1,\n#     \"disable_existing_loggers\": True,\n#     \"formatters\": {\n#         \"verbose\": {\n#             \"format\": \"%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s\"\n#         },\n#         \"simple\": {\"format\": \"%(levelname)s %(message)s\"},\n#     },",
         "detail": "settings.settings",
         "documentation": {}
     },
@@ -426,7 +490,7 @@
         "kind": 6,
         "importPath": "simulation01.management.commands.initmymodel",
         "description": "simulation01.management.commands.initmymodel",
-        "peekOfCode": "class Command(BaseCommand):\n    def handle(self, *args, **options):\n        Parameters.objects.create(\n            data={\n                \"S0\": {\"value\": 100, \"desc\": \"Stock price at time 0\"},\n                \"ST\": {\"value\": 100, \"desc\": \"Stock price at time T\"},\n                \"K\": {\"value\": 100, \"desc\": \"Strike/Exercise Price\"},\n                \"T\": {\"value\": 3, \"desc\": \"Expiration Time\"},\n                \"r\": {\"value\": 0.045, \"desc\": \"Risk-free interest rate (annual)\"},\n                \"sigma\": {\"value\": 0.15, \"desc\": \"Volatility (annual)\"},",
+        "peekOfCode": "class Command(BaseCommand):\n    help = \"Initialize a Parameters entry in the database with default values.\"\n    def handle(self, *args, **options):\n        Parameters.objects.create(\n            name=\"Black Scholes\",\n            user=\"admin\",\n            S0=100,\n            ST=100,\n            K=100,\n            T=3,",
         "detail": "simulation01.management.commands.initmymodel",
         "documentation": {}
     },
@@ -435,7 +499,7 @@
         "kind": 6,
         "importPath": "simulation01.migrations.0001_initial",
         "description": "simulation01.migrations.0001_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Parameters',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('data', models.JSONField()),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Parameters',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('name', models.CharField(max_length=256)),",
         "detail": "simulation01.migrations.0001_initial",
         "documentation": {}
     },
@@ -453,7 +517,7 @@
         "kind": 6,
         "importPath": "simulation01.models",
         "description": "simulation01.models",
-        "peekOfCode": "class Parameters(models.Model):\n    data = models.JSONField()  # 用于存储 JSON 数据\n    name = models.CharField(max_length=256)\n    user = models.CharField(max_length=256, blank=True)\nclass SimulationResult(models.Model):\n    data = models.JSONField()",
+        "peekOfCode": "class Parameters(models.Model):\n    name = models.CharField(max_length=256)\n    user = models.CharField(max_length=256, blank=True)\n    S0 = models.FloatField(default=100, help_text=\"Stock price at time 0\")\n    ST = models.FloatField(default=100, help_text=\"Stock price at time T\")\n    K = models.FloatField(default=100, help_text=\"Strike/Exercise Price\")\n    T = models.FloatField(default=3, help_text=\"Expiration Time\")\n    r = models.FloatField(default=0.045, help_text=\"Risk-free interest rate (annual)\")\n    sigma = models.FloatField(default=0.15, help_text=\"Volatility (annual)\")\n    Y = models.FloatField(default=0.035, help_text=\"Dividend yield (annual)\")",
         "detail": "simulation01.models",
         "documentation": {}
     },
@@ -462,8 +526,26 @@
         "kind": 6,
         "importPath": "simulation01.models",
         "description": "simulation01.models",
-        "peekOfCode": "class SimulationResult(models.Model):\n    data = models.JSONField()",
+        "peekOfCode": "class SimulationResult(models.Model):\n    data = models.JSONField()\n    static = models.JSONField()",
         "detail": "simulation01.models",
+        "documentation": {}
+    },
+    {
+        "label": "SimDataSerializer",
+        "kind": 6,
+        "importPath": "simulation01.serializers",
+        "description": "simulation01.serializers",
+        "peekOfCode": "class SimDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = SimulationResult\n        fields = \"__all__\"\nclass ParametersModelSerializer(serializers.ModelSerializer):\n    help_texts = serializers.SerializerMethodField()\n    class Meta:\n        model = Parameters\n        exclude = [\"user\", \"name\", \"id\"]\n    def get_help_texts(self, obj):",
+        "detail": "simulation01.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ParametersModelSerializer",
+        "kind": 6,
+        "importPath": "simulation01.serializers",
+        "description": "simulation01.serializers",
+        "peekOfCode": "class ParametersModelSerializer(serializers.ModelSerializer):\n    help_texts = serializers.SerializerMethodField()\n    class Meta:\n        model = Parameters\n        exclude = [\"user\", \"name\", \"id\"]\n    def get_help_texts(self, obj):\n        \"\"\"\n        Retrieves the help_texts for each field in the model.\n        \"\"\"\n        return {",
+        "detail": "simulation01.serializers",
         "documentation": {}
     },
     {
@@ -471,8 +553,44 @@
         "kind": 5,
         "importPath": "simulation01.urls",
         "description": "simulation01.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.firstMethod, name=\"first\"),\n    path(\"update/\", views.update_parameter, name=\"update_parameter\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.firstMethod, name=\"first\"),\n    path(\"getdata/\", views.get_IRR_data, name=\"first\"),\n    path(\"parameters/\", views.ParametersListCreateAPIView.as_view()),\n]",
         "detail": "simulation01.urls",
+        "documentation": {}
+    },
+    {
+        "label": "ParametersListCreateAPIView",
+        "kind": 6,
+        "importPath": "simulation01.views copy",
+        "description": "simulation01.views copy",
+        "peekOfCode": "class ParametersListCreateAPIView(ListCreateAPIView):\n    queryset = Parameters.objects.all()\n    serializer_class = ParametersModelSerializer\ndef firstMethod(request):\n    # 查询数据库中 name 匹配的第一条记录\n    res = Parameters.objects.last()\n    serializer = ParametersModelSerializer(instance=res)\n    res_data = serializer.data\n    print(res_data)\n    S = res_data[\"S0\"]",
+        "detail": "simulation01.views copy",
+        "documentation": {}
+    },
+    {
+        "label": "firstMethod",
+        "kind": 2,
+        "importPath": "simulation01.views copy",
+        "description": "simulation01.views copy",
+        "peekOfCode": "def firstMethod(request):\n    # 查询数据库中 name 匹配的第一条记录\n    res = Parameters.objects.last()\n    serializer = ParametersModelSerializer(instance=res)\n    res_data = serializer.data\n    print(res_data)\n    S = res_data[\"S0\"]\n    K = res_data[\"K\"]\n    T = res_data[\"T\"]\n    r = res_data[\"r\"]",
+        "detail": "simulation01.views copy",
+        "documentation": {}
+    },
+    {
+        "label": "get_IRR_data",
+        "kind": 2,
+        "importPath": "simulation01.views copy",
+        "description": "simulation01.views copy",
+        "peekOfCode": "def get_IRR_data(request):\n    data = SimulationResult.objects.last()\n    if not data:\n        return JsonResponse({\"error\": \"没有找到任何记录。\"}, status=404)\n    # 使用序列化器序列化数据\n    serializer = SimDataSerializer(instance=data)\n    serialized_data = serializer.data  # 正确获取序列化后的数据\n    sheet_data = serialized_data.get(\"data\", {})\n    try:\n        sheet = pd.DataFrame(sheet_data)",
+        "detail": "simulation01.views copy",
+        "documentation": {}
+    },
+    {
+        "label": "ParametersListCreateAPIView",
+        "kind": 6,
+        "importPath": "simulation01.views",
+        "description": "simulation01.views",
+        "peekOfCode": "class ParametersListCreateAPIView(ListCreateAPIView):\n    queryset = Parameters.objects.all()\n    serializer_class = ParametersModelSerializer\ndef firstMethod(request):\n    # 查询数据库中 name 匹配的第一条记录\n    res = Parameters.objects.last()\n    serializer = ParametersModelSerializer(instance=res)\n    res_data = serializer.data\n    S = res_data[\"S0\"]\n    K = res_data[\"K\"]",
+        "detail": "simulation01.views",
         "documentation": {}
     },
     {
@@ -480,16 +598,16 @@
         "kind": 2,
         "importPath": "simulation01.views",
         "description": "simulation01.views",
-        "peekOfCode": "def firstMethod(request):\n    # 从请求中获取 'name' 参数\n    name = request.GET.get(\"name\")\n    # 查询数据库中 name 匹配的第一条记录\n    res = Parameters.objects.filter(name=name).first()\n    res_data = res.data\n    S = res_data[\"S0\"][\"value\"]\n    K = res_data[\"K\"][\"value\"]\n    T = res_data[\"T\"][\"value\"]\n    r = res_data[\"r\"][\"value\"]",
+        "peekOfCode": "def firstMethod(request):\n    # 查询数据库中 name 匹配的第一条记录\n    res = Parameters.objects.last()\n    serializer = ParametersModelSerializer(instance=res)\n    res_data = serializer.data\n    S = res_data[\"S0\"]\n    K = res_data[\"K\"]\n    T = res_data[\"T\"]\n    r = res_data[\"r\"]\n    sigma = res_data[\"sigma\"]",
         "detail": "simulation01.views",
         "documentation": {}
     },
     {
-        "label": "update_parameter",
+        "label": "get_IRR_data",
         "kind": 2,
         "importPath": "simulation01.views",
         "description": "simulation01.views",
-        "peekOfCode": "def update_parameter(request):\n    \"\"\"\n    使用 PUT 方法更新指定 Parameters 对象的 data 字段中的 JSON 值\n    \"\"\"\n    if request.method == \"PUT\":\n        try:\n            # 获取指定的 Parameters 对象\n            parameter = get_object_or_404(Parameters)\n            # 解析请求体中的 JSON 数据\n            body = json.loads(request.body)",
+        "peekOfCode": "def get_IRR_data(request):\n    data = SimulationResult.objects.last()\n    if not data:\n        return JsonResponse({\"error\": \"没有找到任何记录。\"}, status=404)\n    # 使用序列化器序列化数据\n    serializer = SimDataSerializer(instance=data)\n    serialized_data = serializer.data  # 正确获取序列化后的数据\n    sheet_data = serialized_data.get(\"data\", {})\n    sheet_data = json.loads(sheet_data)\n    static_data = serialized_data.get(\"static\", {})",
         "detail": "simulation01.views",
         "documentation": {}
     },

@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     path("", views.firstMethod, name="first"),
-    path("update/", views.update_parameter, name="update_parameter"),
+    path("getdata/", views.get_IRR_data, name="first"),
+    path("parameters/", views.ParametersListCreateAPIView.as_view()),
 ]
