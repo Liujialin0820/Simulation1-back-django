@@ -7,13 +7,18 @@ class Parameters(models.Model):
     name = models.CharField(max_length=256)
     user = models.CharField(max_length=256, blank=True)
     S0 = models.FloatField(default=100, help_text="Stock price at time 0")
-    ST = models.FloatField(default=100, help_text="Stock price at time T")
     K = models.FloatField(default=100, help_text="Strike/Exercise Price")
     T = models.FloatField(default=3, help_text="Expiration Time")
     r = models.FloatField(default=0.045, help_text="Risk-free interest rate (annual)")
     sigma = models.FloatField(default=0.15, help_text="Volatility (annual)")
     Y = models.FloatField(default=0.035, help_text="Dividend yield (annual)")
     μ = models.FloatField(default=0.095, help_text="Expected total return")
+    C = models.FloatField(
+        default=1,
+        help_text="The price of call option",
+    )
+    I0 = models.FloatField(default=0, help_text="Price of I product")
+    G0 = models.FloatField(default=0, help_text="Price of G product")
     Franking = models.FloatField(
         default=0.9, help_text="Franking credit rate (assumed 90%)"
     )

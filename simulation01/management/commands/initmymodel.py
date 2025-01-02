@@ -12,7 +12,6 @@ class Command(BaseCommand):
             name="Black Scholes",
             user="admin",
             S0=100,
-            ST=100,
             K=100,
             T=3,
             r=0.045,

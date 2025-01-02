@@ -17,6 +17,7 @@ class ParametersListCreateAPIView(ListCreateAPIView):
 
 def firstMethod(request):
     # 查询数据库中 name 匹配的第一条记录
+    model = request.GET.get("model")
     res = Parameters.objects.last()
     serializer = ParametersModelSerializer(instance=res)
     res_data = serializer.data
@@ -34,38 +35,51 @@ def firstMethod(request):
     Super_Fund_Income_tax = res_data["Super_Fund_Income_tax"]
     Super_Fund_Cap_gains_tax = res_data["Super_Fund_Cap_gains_tax"]
 
-    def black_scholes_with_dividend(S, K, T, r, sigma, Y, option_type="call"):
-        # 计算 d1 和 d2
-        d1 = (math.log(S / K) + (r - Y + 0.5 * sigma**2) * T) / (sigma * math.sqrt(T))
-        d2 = d1 - sigma * math.sqrt(T)
+    if model == "black":
 
-        # 看涨期权（Call Option）定价
-        if option_type == "call":
-            price = S * math.exp(-Y * T) * norm.cdf(d1) - K * math.exp(
-                -r * T
-            ) * norm.cdf(d2)
-        # 看跌期权（Put Option）定价
-        elif option_type == "put":
-            price = K * math.exp(-r * T) * norm.cdf(-d2) - S * math.exp(
-                -Y * T
-            ) * norm.cdf(-d1)
-        else:
-            raise ValueError("option_type 必须是 'call' 或 'put'")
+        def black_scholes_with_dividend(S, K, T, r, sigma, Y, option_type="call"):
+            # 计算 d1 和 d2
+            d1 = (math.log(S / K) + (r - Y + 0.5 * sigma**2) * T) / (
+                sigma * math.sqrt(T)
+            )
+            d2 = d1 - sigma * math.sqrt(T)
 
-        return price
+            # 看涨期权（Call Option）定价
+            if option_type == "call":
+                price = S * math.exp(-Y * T) * norm.cdf(d1) - K * math.exp(
+                    -r * T
+                ) * norm.cdf(d2)
+            # 看跌期权（Put Option）定价
+            elif option_type == "put":
+                price = K * math.exp(-r * T) * norm.cdf(-d2) - S * math.exp(
+                    -Y * T
+                ) * norm.cdf(-d1)
+            else:
+                raise ValueError("option_type 必须是 'call' 或 'put'")
 
-    # 计算看涨期权和看跌期权价格
-    call_price = black_scholes_with_dividend(S, K, T, r, sigma, Y, option_type="call")
+            return price
 
-    tmp = S - S * math.exp(-Y * T)
-    tmp = call_price / tmp
-    I0 = S / (1 + tmp)
-    G0 = S - I0
+        # 计算看涨期权和看跌期权价格
+        call_price = black_scholes_with_dividend(
+            S, K, T, r, sigma, Y, option_type="call"
+        )
+
+        tmp = S - S * math.exp(-Y * T)
+        tmp = call_price / tmp
+        I0 = S / (1 + tmp)
+        G0 = S - I0
+    if model == "customise":
+        I0 = res_data["I0"]
+        G0 = res_data["G0"]
+        call_price = res_data["C"]
 
     sheet = pd.DataFrame(index=range(n))
     sheet["I0"] = I0
     sheet["G0"] = G0
-
+    res.I0 = round(I0, 2)
+    res.G0 = round(G0, 2)
+    res.C = round(call_price, 2)
+    res.save()
     # r
     mean = μ - Y  # 预期回报减去分红收益率
     std_dev = sigma  # 波动率
@@ -177,6 +191,7 @@ def firstMethod(request):
     SimulationResult.objects.create(
         data=sheet_result.to_json(), static=mean_std_result.round(4).to_json()
     )
+    sheet.to_csv("simulation_process.css")
     return JsonResponse(
         {
             "result": "created new simulation data",
