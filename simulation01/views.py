@@ -79,7 +79,7 @@ def firstMethod(request):
     res.I0 = round(I0, 2)
     res.G0 = round(G0, 2)
     res.C = round(call_price, 2)
-    res.save()
+
     # r
     mean = μ - Y  # 预期回报减去分红收益率
     std_dev = sigma  # 波动率
@@ -205,6 +205,7 @@ def firstMethod(request):
         data=sheet_result.to_json(), static=mean_std_result.round(4).to_json()
     )
     sheet.to_csv("simulation_process.csv")
+    res.save()
     return JsonResponse(
         {
             "result": "created new simulation data",
