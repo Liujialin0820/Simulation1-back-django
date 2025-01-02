@@ -191,7 +191,7 @@ def firstMethod(request):
     SimulationResult.objects.create(
         data=sheet_result.to_json(), static=mean_std_result.round(4).to_json()
     )
-    sheet.to_csv("simulation_process.css")
+    sheet.to_csv("simulation_process.csv")
     return JsonResponse(
         {
             "result": "created new simulation data",
