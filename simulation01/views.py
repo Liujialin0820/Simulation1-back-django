@@ -168,12 +168,24 @@ def firstMethod(request):
     sheet["Share_Super_Fund_after_tax_income_irr_values"] = (
         np.apply_along_axis(npf.irr, axis=1, arr=Share_Super_Fund_after_tax_income) * 2
     )
+
+    # 两个相加
+    U = Product_Super_Fund_after_tax_income
+    U[:, 0] -= G0
+    U[:, 6] += sheet["G3"]
+    columns = [f"Product Sum Cashflow{i}" for i in range(0, 7)]
+    sheet[columns] = U
+    sheet["Sum_of_the_Growth_and_Income_products_irr"] = (
+        np.apply_along_axis(npf.irr, axis=1, arr=U) * 2
+    )
+
     sheet_result = sheet[
         [
             "Share_Super_Fund_after_tax_income_irr_values",
             "Product_Super_Fund_after_tax_income_I_irr_values",
             "Share_Fammily_Office_after_tax_income_irr_values",
             "Product_Family_Office_after_tax_income_G_irr_values",
+            "Sum_of_the_Growth_and_Income_products_irr",
         ]
     ]
     renamed_columns = {
@@ -181,6 +193,7 @@ def firstMethod(request):
         "Product_Super_Fund_after_tax_income_I_irr_values": "SuperFund_Product_IRR",
         "Share_Fammily_Office_after_tax_income_irr_values": "FamilyOffice_Share_IRR",
         "Product_Family_Office_after_tax_income_G_irr_values": "FamilyOffice_Product_IRR",
+        "Sum_of_the_Growth_and_Income_products_irr": "Product_Sum_IRR",
     }
     sheet_result = sheet_result.rename(columns=renamed_columns)
 
