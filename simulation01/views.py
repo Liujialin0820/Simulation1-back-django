@@ -137,6 +137,8 @@ def firstMethod(request):
     Share_Fammily_Office_after_tax_income[:, 6] += (sheet["S3.0"] - S) * (
         1 - Family_Office_Cap_gains_tax
     ) + S
+    columns = [f"Share_Fammily_Office_after_tax_income_cash_flow{i}" for i in range(0, 7)]
+    sheet[columns] = Share_Fammily_Office_after_tax_income
     sheet["Share_Fammily_Office_after_tax_income_irr_values"] = (
         np.apply_along_axis(npf.irr, axis=1, arr=Share_Fammily_Office_after_tax_income)
         * 2
@@ -149,12 +151,12 @@ def firstMethod(request):
         Product_Super_Fund_after_tax_income, 0, -I0, axis=1
     )
     Product_Super_Fund_after_tax_income[:, 6] += sheet["I3"]
-
+    columns = [f"Product_Super_Fund_after_tax_income_cash_flow{i}" for i in range(0, 7)]
+    sheet[columns] = Product_Super_Fund_after_tax_income
     sheet["Product_Super_Fund_after_tax_income_I_irr_values"] = (
         np.apply_along_axis(npf.irr, axis=1, arr=Product_Super_Fund_after_tax_income)
         * 2
     )
-    print(Product_Super_Fund_after_tax_income[1])
 
     Share_Super_Fund_after_tax_income = (FC_vales + Div_values) * (
         1 - Super_Fund_Income_tax
@@ -165,6 +167,8 @@ def firstMethod(request):
     Share_Super_Fund_after_tax_income[:, 6] += S + (sheet["S3.0"] - S) * (
         1 - Super_Fund_Cap_gains_tax
     )
+    columns = [f"Share_Super_Fund_after_tax_income_cashflow{i}" for i in range(0, 7)]
+    sheet[columns] = Share_Super_Fund_after_tax_income
     sheet["Share_Super_Fund_after_tax_income_irr_values"] = (
         np.apply_along_axis(npf.irr, axis=1, arr=Share_Super_Fund_after_tax_income) * 2
     )
