@@ -70,7 +70,6 @@ def firstMethod(request):
     mean = μ - Y  # 预期回报减去分红收益率
     std_dev = sigma  # 波动率
     r_values = np.random.normal(loc=mean, scale=std_dev, size=(n, 6))
-
     exp_r_values = np.exp(r_values * 0.5)
     columns = [f"exp_r{i}" for i in range(1, 7)]
     sheet[columns] = exp_r_values
@@ -124,8 +123,9 @@ def firstMethod(request):
     Share_Fammily_Office_after_tax_income[:, 6] += (sheet["S3.0"] - S) * (
         1 - Family_Office_Cap_gains_tax
     ) + S
-    sheet["Share_Fammily_Office_after_tax_income_irr_values"] = np.apply_along_axis(
-        npf.irr, axis=1, arr=Share_Fammily_Office_after_tax_income
+    sheet["Share_Fammily_Office_after_tax_income_irr_values"] = (
+        np.apply_along_axis(npf.irr, axis=1, arr=Share_Fammily_Office_after_tax_income)
+        * 2
     )
 
     Product_Super_Fund_after_tax_income = (FC_vales + Div_values) * (
@@ -136,9 +136,11 @@ def firstMethod(request):
     )
     Product_Super_Fund_after_tax_income[:, 6] += sheet["I3"]
 
-    sheet["Product_Super_Fund_after_tax_income_I_irr_values"] = np.apply_along_axis(
-        npf.irr, axis=1, arr=Product_Super_Fund_after_tax_income
+    sheet["Product_Super_Fund_after_tax_income_I_irr_values"] = (
+        np.apply_along_axis(npf.irr, axis=1, arr=Product_Super_Fund_after_tax_income)
+        * 2
     )
+    print(Product_Super_Fund_after_tax_income[1])
 
     Share_Super_Fund_after_tax_income = (FC_vales + Div_values) * (
         1 - Super_Fund_Income_tax
@@ -149,10 +151,10 @@ def firstMethod(request):
     Share_Super_Fund_after_tax_income[:, 6] += S + (sheet["S3.0"] - S) * (
         1 - Super_Fund_Cap_gains_tax
     )
-    sheet["Share_Super_Fund_after_tax_income_irr_values"] = np.apply_along_axis(
-        npf.irr, axis=1, arr=Share_Super_Fund_after_tax_income
+    sheet["Share_Super_Fund_after_tax_income_irr_values"] = (
+        np.apply_along_axis(npf.irr, axis=1, arr=Share_Super_Fund_after_tax_income) * 2
     )
-
+    sheet.to_excel("sim.xlsx")
     sheet_result = sheet[
         [
             "Share_Super_Fund_after_tax_income_irr_values",
