@@ -154,7 +154,6 @@ def firstMethod(request):
     sheet["Share_Super_Fund_after_tax_income_irr_values"] = (
         np.apply_along_axis(npf.irr, axis=1, arr=Share_Super_Fund_after_tax_income) * 2
     )
-    sheet.to_excel("sim.xlsx")
     sheet_result = sheet[
         [
             "Share_Super_Fund_after_tax_income_irr_values",
