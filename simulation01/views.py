@@ -30,10 +30,10 @@ def firstMethod(request):
     μ = res_data["μ"]
     Franking = res_data["Franking"]
     n = res_data["simulation_step"]
-    Family_Office_Income_tax = res_data["Family_Office_Income_tax"]
-    Family_Office_Cap_gains_tax = res_data["Family_Office_Cap_gains_tax"]
-    Super_Fund_Income_tax = res_data["Super_Fund_Income_tax"]
-    Super_Fund_Cap_gains_tax = res_data["Super_Fund_Cap_gains_tax"]
+    Growth_Party_Income_tax = res_data["Growth_Party_Income_tax"]
+    Growth_Party_Cap_gains_tax = res_data["Growth_Party_Cap_gains_tax"]
+    Income_Party_Income_tax = res_data["Income_Party_Income_tax"]
+    Income_Party_Cap_gains_tax = res_data["Income_Party_Cap_gains_tax"]
 
     if model == "black":
 
@@ -104,17 +104,20 @@ def firstMethod(request):
     # G3
     sheet["tmp1"] = (G0 / S) * np.minimum(sheet["S3.0"] - K, 0)
     sheet["tmp2"] = np.maximum(sheet["S3.0"] - K, 0)
-    sheet["Capital_gain_Family_Office"] = (sheet["tmp1"] + sheet["tmp2"]) * (
-        1 - Family_Office_Cap_gains_tax
+    sheet["Capital_gain_Growth_Party"] = (sheet["tmp1"] + sheet["tmp2"]) * (
+        1 - Growth_Party_Cap_gains_tax
     )
-    sheet["G3"] = sheet["G0"] + sheet["Capital_gain_Family_Office"]
+    sheet["Product_GP_tax"] = (sheet["tmp1"] + sheet["tmp2"]) * (
+        Growth_Party_Cap_gains_tax
+    )
+    sheet["G3"] = sheet["G0"] + sheet["Capital_gain_Growth_Party"]
 
-    sheet["Product_Family_Office_after_tax_income_G_irr_values"] = 2 * (
+    sheet["Product_Growth_Party_after_tax_income_G_irr_values"] = 2 * (
         (sheet["G3"] / sheet["G0"]) ** (1 / 6) - 1
     )
 
     sheet["tmp3"] = np.minimum(sheet["S3.0"] - K, 0) * (I0 / S)
-    sheet["I3"] = sheet["tmp3"] * (1 - Super_Fund_Cap_gains_tax) + I0
+    sheet["I3"] = sheet["tmp3"] * (1 - Income_Party_Cap_gains_tax) + I0
 
     Div_values = S_values * Y * 0.5
     columns = [f"Div{i}" for i in range(1, 7)]
@@ -128,53 +131,78 @@ def firstMethod(request):
     columns = [f"FC{i}" for i in range(1, 7)]
     sheet[columns] = FC_vales
 
-    Share_Fammily_Office_after_tax_income = (FC_vales + Div_values) * (
-        1 - Family_Office_Income_tax
+    Share_Growth_Party_after_tax_income = (FC_vales + Div_values) * (
+        1 - Growth_Party_Income_tax
     )
-    Share_Fammily_Office_after_tax_income = np.insert(
-        Share_Fammily_Office_after_tax_income, 0, -S, axis=1
+    Share_Growth_Party_after_tax_income = np.insert(
+        Share_Growth_Party_after_tax_income, 0, -S, axis=1
     )
-    Share_Fammily_Office_after_tax_income[:, 6] += (sheet["S3.0"] - S) * (
-        1 - Family_Office_Cap_gains_tax
+    Share_Growth_Party_after_tax_income[:, 6] += (sheet["S3.0"] - S) * (
+        1 - Growth_Party_Cap_gains_tax
     ) + S
-    columns = [f"Share_Fammily_Office_after_tax_income_cash_flow{i}" for i in range(0, 7)]
-    sheet[columns] = Share_Fammily_Office_after_tax_income
-    sheet["Share_Fammily_Office_after_tax_income_irr_values"] = (
-        np.apply_along_axis(npf.irr, axis=1, arr=Share_Fammily_Office_after_tax_income)
+    columns = [f"Share_Growth_Party_after_tax_income_cash_flow{i}" for i in range(0, 7)]
+    sheet[columns] = Share_Growth_Party_after_tax_income
+    sheet["Share_Growth_Party_after_tax_income_irr_values"] = (
+        np.apply_along_axis(npf.irr, axis=1, arr=Share_Growth_Party_after_tax_income)
         * 2
     )
 
-    Product_Super_Fund_after_tax_income = (FC_vales + Div_values) * (
-        1 - Super_Fund_Income_tax
+    # tax
+    Share_GP_tax = Div_values - (Div_values + FC_vales) * (1 - Growth_Party_Income_tax)
+    Share_GP_tax[:, 5] += (sheet["S3.0"] - S) * Growth_Party_Cap_gains_tax
+    columns = [f"Share_Growth_Party_tax{i}" for i in range(0, 6)]
+    sheet[columns] = Share_GP_tax
+    sheet["Share_GP_tax"] = np.sum(Share_GP_tax, axis=1)
+
+    Product_Income_Party_after_tax_income = (FC_vales + Div_values) * (
+        1 - Income_Party_Income_tax
     )
-    Product_Super_Fund_after_tax_income = np.insert(
-        Product_Super_Fund_after_tax_income, 0, -I0, axis=1
+    Product_Income_Party_tax = Div_values - Product_Income_Party_after_tax_income
+
+    Product_Income_Party_after_tax_income = np.insert(
+        Product_Income_Party_after_tax_income, 0, -I0, axis=1
     )
-    Product_Super_Fund_after_tax_income[:, 6] += sheet["I3"]
-    columns = [f"Product_Super_Fund_after_tax_income_cash_flow{i}" for i in range(0, 7)]
-    sheet[columns] = Product_Super_Fund_after_tax_income
-    sheet["Product_Super_Fund_after_tax_income_I_irr_values"] = (
-        np.apply_along_axis(npf.irr, axis=1, arr=Product_Super_Fund_after_tax_income)
+    Product_Income_Party_after_tax_income[:, 6] += sheet["I3"]
+    columns = [
+        f"Product_Income_Party_after_tax_income_cash_flow{i}" for i in range(0, 7)
+    ]
+    sheet[columns] = Product_Income_Party_after_tax_income
+    sheet["Product_Income_Party_after_tax_income_I_irr_values"] = (
+        np.apply_along_axis(npf.irr, axis=1, arr=Product_Income_Party_after_tax_income)
         * 2
     )
 
-    Share_Super_Fund_after_tax_income = (FC_vales + Div_values) * (
-        1 - Super_Fund_Income_tax
+    # tax
+    Product_Income_Party_tax[:, 5] += sheet["tmp3"] * (Income_Party_Cap_gains_tax)
+    columns = [f"Product_Income_Party_tax{i}" for i in range(0, 6)]
+    sheet[columns] = Product_Income_Party_tax
+    sheet["Product_IP_tax"] = np.sum(Product_Income_Party_tax, axis=1)
+    Share_Income_Party_after_tax_income = (FC_vales + Div_values) * (
+        1 - Income_Party_Income_tax
     )
-    Share_Super_Fund_after_tax_income = np.insert(
-        Share_Super_Fund_after_tax_income, 0, -S, axis=1
+    Share_Income_Party_after_tax_income = np.insert(
+        Share_Income_Party_after_tax_income, 0, -S, axis=1
     )
-    Share_Super_Fund_after_tax_income[:, 6] += S + (sheet["S3.0"] - S) * (
-        1 - Super_Fund_Cap_gains_tax
+    Share_Income_Party_after_tax_income[:, 6] += S + (sheet["S3.0"] - S) * (
+        1 - Income_Party_Cap_gains_tax
     )
-    columns = [f"Share_Super_Fund_after_tax_income_cashflow{i}" for i in range(0, 7)]
-    sheet[columns] = Share_Super_Fund_after_tax_income
-    sheet["Share_Super_Fund_after_tax_income_irr_values"] = (
-        np.apply_along_axis(npf.irr, axis=1, arr=Share_Super_Fund_after_tax_income) * 2
+    columns = [f"Share_Income_Party_after_tax_income_cashflow{i}" for i in range(0, 7)]
+    sheet[columns] = Share_Income_Party_after_tax_income
+    sheet["Share_Income_Party_after_tax_income_irr_values"] = (
+        np.apply_along_axis(npf.irr, axis=1, arr=Share_Income_Party_after_tax_income)
+        * 2
     )
+
+    # tax
+    Share_IP_tax = Div_values - (FC_vales + Div_values) * (1 - Income_Party_Income_tax)
+    Share_IP_tax[:, 5] += (sheet["S3.0"] - S) * (Income_Party_Cap_gains_tax)
+    columns = [f"Share_Income_Party_tax{i}" for i in range(0, 6)]
+    sheet[columns] = Share_IP_tax
+    print(Share_IP_tax)
+    sheet["Share_IP_tax"] = np.sum(Share_IP_tax, axis=1)
 
     # 两个相加
-    U = Product_Super_Fund_after_tax_income
+    U = Product_Income_Party_after_tax_income
     U[:, 0] -= G0
     U[:, 6] += sheet["G3"]
     columns = [f"Product Sum Cashflow{i}" for i in range(0, 7)]
@@ -182,32 +210,53 @@ def firstMethod(request):
     sheet["Sum_of_the_Growth_and_Income_products_irr"] = (
         np.apply_along_axis(npf.irr, axis=1, arr=U) * 2
     )
+    # △tax
+    sheet["delta tax"] = (
+        sheet["Product_GP_tax"]
+        + sheet["Product_IP_tax"]
+        - I0 / S * sheet["Share_IP_tax"]
+        - G0 / S * sheet["Share_GP_tax"]
+    )
 
     sheet_result = sheet[
         [
-            "Share_Super_Fund_after_tax_income_irr_values",
-            "Product_Super_Fund_after_tax_income_I_irr_values",
-            "Share_Fammily_Office_after_tax_income_irr_values",
-            "Product_Family_Office_after_tax_income_G_irr_values",
+            "Share_Income_Party_after_tax_income_irr_values",
+            "Product_Income_Party_after_tax_income_I_irr_values",
+            "Share_Growth_Party_after_tax_income_irr_values",
+            "Product_Growth_Party_after_tax_income_G_irr_values",
             "Sum_of_the_Growth_and_Income_products_irr",
+            "delta tax",
         ]
     ]
     renamed_columns = {
-        "Share_Super_Fund_after_tax_income_irr_values": "SuperFund_Share_IRR",
-        "Product_Super_Fund_after_tax_income_I_irr_values": "SuperFund_Product_IRR",
-        "Share_Fammily_Office_after_tax_income_irr_values": "FamilyOffice_Share_IRR",
-        "Product_Family_Office_after_tax_income_G_irr_values": "FamilyOffice_Product_IRR",
+        "Share_Income_Party_after_tax_income_irr_values": "Income_Party_Share_IRR",
+        "Product_Income_Party_after_tax_income_I_irr_values": "Income_Party_Product_IRR",
+        "Share_Growth_Party_after_tax_income_irr_values": "Growth_Party_Share_IRR",
+        "Product_Growth_Party_after_tax_income_G_irr_values": "Growth_Party_Product_IRR",
         "Sum_of_the_Growth_and_Income_products_irr": "Product_Sum_IRR",
     }
     sheet_result = sheet_result.rename(columns=renamed_columns)
 
+    sheet_tax = sheet[
+        [
+            "Share_IP_tax",
+            "Share_GP_tax",
+            "Product_IP_tax",
+            "Product_GP_tax",
+        ]
+    ]
+
     # 计算均值和标准差
     mean_std_result = sheet_result.agg(["mean", "std"])
-    mean_std_result.round(4)
+    tax_static = sheet_tax.agg(["mean", "std"])
 
     SimulationResult.objects.create(
-        data=sheet_result.to_json(), static=mean_std_result.round(4).to_json()
+        data=sheet_result.to_json(),
+        static=mean_std_result.round(4).to_json(),
+        tax=sheet_tax.round(2).to_json(),
+        tax_static=tax_static.round(2).to_json(),
     )
+
     sheet.to_csv("simulation_process.csv")
     res.save()
     return JsonResponse(
@@ -217,7 +266,7 @@ def firstMethod(request):
     )
 
 
-def get_IRR_data(request):
+def get_data(request):
     data = SimulationResult.objects.last()
     if not data:
         return JsonResponse({"error": "没有找到任何记录。"}, status=404)
@@ -228,6 +277,8 @@ def get_IRR_data(request):
     sheet_data = serialized_data.get("data", {})
     sheet_data = json.loads(sheet_data)
     static_data = serialized_data.get("static", {})
+    tax_data = serialized_data.get("tax", {})
+    tax_static = serialized_data.get("tax_static", {})
 
     try:
         sheet = pd.DataFrame(sheet_data)
@@ -264,6 +315,8 @@ def get_IRR_data(request):
                 df[sheet.keys()[0]].value_counts().sort_index().to_dict().keys()
             ),
             "static_data": static_data,
+            "tax_data": tax_data,
+            "tax_static": tax_static,
         },
         status=200,
         safe=False,

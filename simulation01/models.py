@@ -27,20 +27,22 @@ class Parameters(models.Model):
         help_text="Number of simulation steps",
         validators=[MaxValueValidator(1000000)],
     )
-    Family_Office_Income_tax = models.FloatField(
-        default=0.30, help_text="Income tax rate for Family Office"
+    Growth_Party_Income_tax = models.FloatField(
+        default=0.30, help_text="Income tax rate for Growth Party"
     )
-    Family_Office_Cap_gains_tax = models.FloatField(
-        default=0.235, help_text="Capital gains tax rate for Family Office"
+    Growth_Party_Cap_gains_tax = models.FloatField(
+        default=0.235, help_text="Capital gains tax rate for Growth Party"
     )
-    Super_Fund_Income_tax = models.FloatField(
-        default=0.30, help_text="Income tax rate for Super Fund"
+    Income_Party_Income_tax = models.FloatField(
+        default=0.30, help_text="Income tax rate for Income Party"
     )
-    Super_Fund_Cap_gains_tax = models.FloatField(
-        default=0.235, help_text="Capital gains tax rate for Super Fund"
+    Income_Party_Cap_gains_tax = models.FloatField(
+        default=0.235, help_text="Capital gains tax rate for Income Party"
     )
 
 
 class SimulationResult(models.Model):
     data = models.JSONField()
     static = models.JSONField()
+    tax = models.JSONField()
+    tax_static = models.JSONField()

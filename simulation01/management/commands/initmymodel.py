@@ -19,10 +19,10 @@ class Command(BaseCommand):
             Y=0.035,
             μ=0.095,
             Franking=0.9,
-            Family_Office_Income_tax=0.30,
-            Family_Office_Cap_gains_tax=0.235,
-            Super_Fund_Income_tax=0.30,
-            Super_Fund_Cap_gains_tax=0.235,
+            Growth_Party_Income_tax=0.30,
+            Growth_Party_Cap_gains_tax=0.235,
+            Income_Party_Income_tax=0.30,
+            Income_Party_Cap_gains_tax=0.235,
             simulation_step=10,
         )
         self.stdout.write(self.style.SUCCESS("Parameters entry successfully created!"))
