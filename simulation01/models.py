@@ -18,7 +18,9 @@ class Parameters(models.Model):
         help_text="The price of call option",
     )
     I0 = models.FloatField(default=0, help_text="Price of I product")
-    G0 = models.FloatField(default=0, help_text="Price of G product")
+    G0 = models.FloatField(
+        default=0, help_text="Price of G product (automatically calculated by S0 -I0)"
+    )
     Franking = models.FloatField(
         default=0.9, help_text="Franking credit rate (assumed 90%)"
     )

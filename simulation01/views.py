@@ -70,7 +70,7 @@ def firstMethod(request):
         G0 = S - I0
     if model == "customise":
         I0 = res_data["I0"]
-        G0 = res_data["G0"]
+        G0 = S - I0
         call_price = res_data["C"]
 
     sheet = pd.DataFrame(index=range(n))
@@ -198,7 +198,6 @@ def firstMethod(request):
     Share_IP_tax[:, 5] += (sheet["S3.0"] - S) * (Income_Party_Cap_gains_tax)
     columns = [f"Share_Income_Party_tax{i}" for i in range(0, 6)]
     sheet[columns] = Share_IP_tax
-    print(Share_IP_tax)
     sheet["Share_IP_tax"] = np.sum(Share_IP_tax, axis=1)
 
     # 两个相加
@@ -257,7 +256,7 @@ def firstMethod(request):
         tax_static=tax_static.round(2).to_json(),
     )
 
-    sheet.to_csv("simulation_process.csv")
+    # sheet.to_csv("simulation_process.csv")
     res.save()
     return JsonResponse(
         {
