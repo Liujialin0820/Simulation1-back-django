@@ -68,6 +68,7 @@ def firstMethod(request):
         tmp = call_price / tmp
         I0 = S / (1 + tmp)
         G0 = S - I0
+        
     if model == "customise":
         I0 = res_data["I0"]
         G0 = S - I0
